@@ -1,0 +1,1 @@
+gunicorn NS.wsgi --log-file -

@@ -1,0 +1,424 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block main %}
+    <!--================Home Banner Area =================-->
+    <section class="banner_area">
+      <div class="banner_inner d-flex align-items-center" style="background-image:url({% static 'img/bgg1.jpg' %});background-size:cover;background-position:fixed;">
+        <div class="container">
+          <div class="banner_content d-md-flex justify-content-between align-items-center">
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+
+    <!--================Single Product Area =================-->
+    <div class="product_image_area"style="width:100%;
+                      height:100%; background:linear-gradient(45deg,#F5F5DC,transparent);">
+      <div class="container">
+        <div class="row s_product_inner">
+          <div class="col-lg-6">
+            <div class="s_product_img">
+              <div
+                id="carouselExampleIndicators"
+                class="carousel slide"
+                data-ride="carousel"
+              >
+                <ol class="carousel-indicators">
+                  <li
+                    data-target="#carouselExampleIndicators"
+                    data-slide-to="0"
+                    class="active"
+                  >
+                    <img
+                      src="/media/{{ product.img1 }}"
+                      alt=""
+                      width="100%"
+                      height="100%"
+                    />
+                  </li>
+                  {% if product.img2 %}
+                  <li
+                    data-target="#carouselExampleIndicators"
+                    data-slide-to="1"
+                  >
+                    <img
+                      src="/media/{{ product.img2 }}"
+                      alt=""
+                      width="100%"
+                      height="100%"
+                    />
+                  </li>
+                  {% endif %}
+                  {% if product.img3 %}
+                  <li
+                    data-target="#carouselExampleIndicators"
+                    data-slide-to="2"
+                  >
+                    <img
+                      src="/media/{{ product.img3 }}"
+                      alt=""
+                      width="100%"
+                      height="100%"
+                    />
+                  </li>
+                  {% endif %}
+                  {% if product.img4 %}
+                  <li
+                    data-target="#carouselExampleIndicators"
+                    data-slide-to="3"
+                  >
+                    <img
+                      src="/media/{{ product.img4 }}"
+                      alt=""
+                      width="100%"
+                      height="100%"
+                    />
+                  </li>
+                  {% endif %}
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img
+                      class="d-block w-100"
+                      src="/media/{{ product.img1 }}"
+                      alt="First slide"
+                      style="max-height:700px;"
+                    />
+                  </div>
+                  {% if product.img2 %}
+                  <div class="carousel-item" style="border-box: 5px 5px 5px">
+                    <img
+                      class="d-block w-100"
+                      src="/media/{{ product.img2 }}"
+                      alt="Second slide"
+                      style="max-height:700px;"
+                    />
+                  </div>
+                  {% endif %}
+                  {% if product.img3 %}
+                  <div class="carousel-item" style="border-box: 5px 5px 5px">
+                    <img
+                      class="d-block w-100"
+                      src="/media/{{ product.img3 }}"
+                      alt="Second slide"
+                      style="max-height:700px;"
+                    />
+                  </div>
+                  {% endif %}
+                  {% if product.img4 %}
+                  <div class="carousel-item" style="border-box: 5px 5px 5px">
+                    <img
+                      class="d-block w-100"
+                      src="/media/{{ product.img4 }}"
+                      alt="Second slide"
+                      style="max-height:700px;"
+                    />
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 offset-lg-1">
+            <div class="s_product_text">
+              <h3>{{ product.title }}</h3>
+              <h2 style="color:#000000;">&#8377; {{ product.price }} | <a style="color:#555555;">{{ product.qty }}</a></h2>
+              <ul class="list">
+                <li>
+                  <a class="active" href="#">
+                    <span>Category</span> : {{ product.type }}</a
+                  >
+                </li>
+                {% if product.stock %}
+                <li>
+                  <a> <span>Availibility</span> : In Stock</a>
+                </li>
+                {% else %}
+                <li>
+                  <a> <span>Availibility</span> : Out Of Stock</a>
+                </li>
+                {% endif %}
+              </ul>
+              <p style="text-align:justify;">
+                {{ product.shortD }}
+                <!-- Discover the exquisite crunch and delicate flavor of our premium cashews. Sourced for their quality and freshness, these nuts provide a wholesome snacking experience. Whether enjoyed on their own or incorporated into your favorite dishes, our cashews promise a delightful blend of creaminess and nutrition. Elevate your taste buds with the superior quality of our premium cashews. -->
+              </p>
+              <form action="" method="post" id="addtocart">
+                {% csrf_token %}
+              <div class="product_count">
+                <label for="qty">Quantity:</label>
+                <input
+                  type="text"
+                  name="qty"
+                  id="sst"
+                  maxlength="12"
+                  value="1"
+                  title="Quantity:"
+                  class="input-text qty"
+                />
+                <button
+                  onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                  class="increase items-count"
+                  type="button"
+                >
+                  <i class="lnr lnr-chevron-up"></i>
+                </button>
+                <button
+                  onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                  class="reduced items-count"
+                  type="button"
+                >
+                  <i class="lnr lnr-chevron-down"></i>
+                </button>
+              </div>
+              
+                <!-- <input type="number" value="{{ product.id }}" name="product" id="product"> -->
+              </form>
+              <div class="card_area">
+                <button class="main_btn" value="buynow" href="#" name="buy">Buy Now</button>
+                {% if request.user.is_authenticated %}
+                <button class="main_btn" value="addtocart" type="submit" form="addtocart" style="background:transparent;color:#282c91;" name="addCart">Add to Cart</button>
+                {% endif %}
+                {% if messages %}
+                  {% for msg in messages %}
+                    <p class="addcartnotif">{{ msg }} <a href="{% url 'cart' %}">View cart</a></p>
+                  {% endfor %}
+                {% endif %}
+
+                <!-- <a class="icon_btn" href="#">
+                  <a class="icon_btn" href="#">
+                    <i class="lnr lnr lnr-heart"></i>
+                  </a>
+                </a> -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--================End Single Product Area =================-->
+
+    <!--================Product Description Area =================-->
+    <section class="product_description_area">
+      <div class="container" >
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              id="home-tab"
+              data-toggle="tab"
+              href="#home"
+              role="tab"
+              aria-controls="home"
+              aria-selected="true"
+              >Description</a
+            >
+          </li>
+          {% if product.specification %}
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="profile-tab"
+              data-toggle="tab"
+              href="#profile"
+              role="tab"
+              aria-controls="profile"
+              aria-selected="false"
+              >Specification</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div
+            class="tab-pane show active fade"
+            id="home"
+            role="tabpanel"
+            aria-labelledby="home-tab"
+          >
+          {{ product.discription|safe }}
+
+          <!-- Description Section -->
+            <!-- <p style="color:#333333">
+
+              Introducing our premium Cashews - Nature's Creamy Delight:
+              Indulge your senses in the exquisite taste and unparalleled quality of our premium cashews. Sourced from the finest orchards around the world, these delectable nuts are meticulously selected to bring you a snacking experience like no other.
+              Our cashews are renowned for their buttery texture, rich flavor, and unmatched freshness. Each nut is carefully handpicked to ensure only the highest quality makes it to your pantry. Whether you're a health-conscious snacker or a culinary enthusiast, our cashews are the perfect addition to your lifestyle.
+              <br><br><b style="color:#333333">Key Features:</b><ul style="color:#333333"  >
+
+                <li style="color:#333333"><b style="color:#333333">Creamy Texture:</b> Enjoy the velvety, melt-in-your-mouth experience that sets our cashews apart. The creamy texture makes them an ideal choice for snacking, baking, or incorporating into your favorite recipes.</li>
+                <li style="color:#333333"><b style="color:#333333">Nutrient-Rich Goodness:</b> Packed with essential nutrients such as protein, healthy fats, and vitamins, our cashews make for a wholesome snack that nourishes your body and satisfies your cravings.</li>
+                <li style="color:#333333"><b style="color:#333333">Versatility in Culinary Delights:</b> Elevate your culinary creations with the versatility of our cashews. From salads to stir-fries, desserts to trail mixes, their mild, nutty flavor complements a wide range of dishes.</li>
+                <li style="color:#333333"><b style="color:#333333">Freshness Guaranteed:</b> Sealed for freshness, our packaging ensures that each cashew retains its natural flavor and crunch. Experience the delightful taste of freshly harvested cashews with every bite.</li>
+                <li style="color:#333333"><b style="color:#333333">Ethically Sourced:</b> We take pride in sourcing our cashews responsibly, supporting local communities and promoting sustainable farming practices. Feel good about your choice while savoring the finest cashews available.</li>
+            </ul>
+<br>
+<p>Make a healthy and flavorful choice by adding our premium cashews to your cart today. Elevate your snacking experience with the unparalleled quality and taste that only our cashews can deliver.</p>
+            </p> -->
+
+            <!-- end Description section -->
+          </div>
+          {% if product.specification %}
+          <div
+            class="tab-pane fade"
+            id="profile"
+            role="tabpanel"
+            aria-labelledby="profile-tab"
+          >
+          {{ product.specification|safe }}
+            <!-- <div class="table-responsive">
+              <table class="table" style="width:100%">
+                <tbody>
+                  <tr>
+                    <td>
+                      <h5>Quantity</h5>
+                    </td>
+                    <td>
+                      <h5>250g</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h5>Height</h5>
+                    </td>
+                    <td>
+                      <h5>508mm</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h5>Width</h5>
+                    </td>
+                    <td>
+                      <h5>85mm</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h5>Quality checking</h5>
+                    </td>
+                    <td>
+                      <h5>yes</h5>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+    <!--================End Product Description Area =================-->
+<section class="inspired_product_area section_gap_bottom_custom" style="padding-top:0">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="main_title">
+            <h2><span>Related Products</span></h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        {% for prod in related %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="single-product" data-aos="zoom-in" data-aos-duration="500" data-aos-easing="ease-in">
+            <div class="product-img" style="border-radius: 50px 0px 0px 0px;">
+              <a href="/single_product/{{ prod.id }}"><img class="card-img" src="/media/{{ prod.img1 }}" alt=""/></a>
+              <div class="p_icon" style="border-radius:50px 50px 0 0; background:transparent;">
+                <!-- <a type="submit" style="width:100%" value="{{ product.id }}" id="addCart" name="addCart"">ADD TO CART</a> -->
+                <!-- onclick="window.location.reload() -->
+              </div>
+            </div>
+            <div class="product-btm" style="border-radius: 0px 0px 50px 0px;">
+              <a href="#" class="d-block">
+                <h4>{{ prod.title }} | {{ prod.qty }}</h4>
+              </a>
+              <div class="mt-3">
+                <span class="mr-4">&#8377; {{ prod.price }}/-</span>
+                <!--<del style="white-space:nowrap;">&#8377; 450.00/Kg</del>-->
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <!-- <div class="col-lg-3 col-md-6">
+          <div class="single-product">
+            <div class="product-img">
+              <img class="img-fluid w-100" src="{% static 'img/pista.jpg' %}" alt="" />
+              <div class="p_icon" style="border-radius:50px 50px 0 0; background:transparent;">
+                <a href="#" style="width:100%">
+                  ADD TO CART
+                </a>
+              </div>
+            </div>
+            <div class="product-btm">
+              <a href="#" class="d-block">
+                <h4>Related Prod 2</h4>
+              </a>
+              <div class="mt-3">
+                <span class="mr-4">&#8377; 250.00/-</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="single-product">
+            <div class="product-img">
+              <img class="img-fluid w-100" src="{% static 'img/pista.jpg' %}" alt="" />
+              <div class="p_icon" style="border-radius:50px 50px 0 0; background:transparent;">
+                <a href="#" style="width:100%">
+                  ADD TO CART
+                </a>
+              </div>
+            </div>
+            <div class="product-btm">
+              <a href="#" class="d-block">
+                <h4>Related Prod 3</h4>
+              </a>
+              <div class="mt-3">
+                <span class="mr-4">&#8377; 250.00/-</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="single-product">
+            <div class="product-img">
+              <img class="img-fluid w-100" src="{% static 'img/pista.jpg' %}" alt="" />
+              <div class="p_icon" style="border-radius:50px 50px 0 0; background:transparent;">
+                <a href="#" style="width:100%">
+                  ADD TO CART
+                </a>
+              </div>
+            </div>
+            <div class="product-btm">
+              <a href="#" class="d-block">
+                <h4>Related Prod 4</h4>
+              </a>
+              <div class="mt-3">
+                <span class="mr-4">&#8377; 250.00/-</span>
+
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </section>
+
+
+
+  
+
+  <!-- Toast -->
+    {% endblock %}
