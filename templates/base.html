@@ -36,16 +36,15 @@
 <body>
   <!--================Header Menu Area =================-->
   <header class="header_area">
-
-
-
-
   <div class="main_menu" style="padding:0;background:linear-gradient(45deg,#F5F5DC,#fff);">
       <div class="container-fluid" style="padding:0;">
         <nav class="navbar navbar-expand-lg navbar-light w-100" style="display: grid;grid-template-columns:100%;padding:0;">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navTop">
-          <a class="navbar-brand logo_h" href="{% url 'home' %}">
+            <a class="navbar-brand logo_h" href="{% url 'home' %}">
+              <img src="{% static 'img/ns_logo.png' %}" alt="NS" width="20%" height="20%"/>
+            </a>
+          <a class="navbar-brand logo" href="{% url 'home' %}">
             <img src="{% static 'img/ns_logo2.png' %}" alt="NS" width="100%"/>
           </a>
 
@@ -78,7 +77,7 @@
               </li>
             </ul>
             {% else %}
-            <a class="main_btn" href="{% url 'login' %}" style="line-height: 30px;padding:0 10px;color:#fff;">
+            <a class="main_btn" href="{% url 'login' %}" style="line-height: 30px;padding:0.3 10px;color:#fff; border-radius: 18px; border: 1px solid #282c91 !important;">
               Login
             </a>
             {% endif %}
@@ -209,9 +208,9 @@
             <li class="nav-item">
               <a class="nav-link" href="/shop/Cardamom">Cardamom</a>
             </li>
-            <li class="nav-item">
+            {% comment %} <li class="nav-item">
               <a class="nav-link" href="/shop/Assorted">Assorted</a>
-            </li>
+            </li> {% endcomment %}
             <li class="nav-item">
               <a class="nav-link" href="/shop/Combos">Combos</a>
             </li>
@@ -279,6 +278,7 @@
           <ul>
             <li><a href="#">Cashews</a></li>
             <li><a href="#">Almonds</a></li>
+            <li><a href="#">Cardamom</a></li>
             {% comment %} <li><a href="#">Pista</a></li>
             <li><a href="#">Dry Fruits</a></li>
             <li><a href="#">Spices</a></li> {% endcomment %}
@@ -294,7 +294,7 @@
       </div>
       <div class="footer-bottom row align-items-center">
         <p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made by <a href="https://www.inspirezesttechnologies.com/" target="_blank"><b style="background: linear-gradient(45deg, #BF40BF, #0096FF, #BF40BF, #0096FF);background-size:250%;background-clip:text;font-size:15pt;color:transparent;">InspireZest</b></a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made by <a href="https://www.inspirezesttechnologies.com/" target="_blank"><b style="background: linear-gradient(45deg, #BF40BF, #0096FF, #BF40BF, #0096FF);background-size:250%;background-clip:text;font-size:15pt;color:transparent;">InspireZest Technologies</b></a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
         <div class="col-lg-4 col-md-12 footer-social">
           <a href="#"><i class="fa fa-facebook"></i></a>
@@ -325,6 +325,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="{% static 'vendors/counter-up/jquery.counterup.js' %}"></script>
   <script src="{% static 'js/mail-script.js' %}"></script>
   <script src="{% static 'js/theme.js' %}"></script>
+  <script src="{% static 'js/products.js' %}"></script>
 
   <!-- AOS -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

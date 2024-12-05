@@ -3,13 +3,10 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 
-
 TYPE = (
     ("Cashew","Cashew"),
     ("Almond","Almond"),
-    ("Pista","Pista"),
-    ("Dates","Dates"),
-    ("Assorted","Assorted"),
+    ("Cardamom","Cardamom"),
     ("Combo","Combo")
 )
 AVAILABILITY = (
