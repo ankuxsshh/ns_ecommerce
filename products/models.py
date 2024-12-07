@@ -20,7 +20,6 @@ class Products(models.Model):
     price = models.DecimalField(null=True, max_digits=6, decimal_places=2)
     stock = models.BooleanField(null=True, default=True)
     qty = models.CharField(max_length=5, null=True)
-    qcheck = models.CharField(max_length=5, null=True)
     shortD = models.TextField(null=True)
     discription = RichTextField(null=True)
     specification = RichTextField(null=True)
