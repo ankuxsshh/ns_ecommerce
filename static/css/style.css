@@ -3912,67 +3912,52 @@ h6 {
     padding-bottom: 60px;
 }
 
-.s_product_img .carousel {
-    position: relative
+.custom-indicators .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
 }
 
-.s_product_img .carousel .carousel-indicators {
-    margin: 0px;
-    right: 20px;
-    width: auto;
-    left: auto;
-    bottom: 30px
-}
-
-.s_product_img .carousel .carousel-indicators li {
-    height: 60px;
+.custom-indicators .carousel-indicators li {
+    display: inline-block;
     width: 60px;
-    background: transparent;
-    text-indent: 0;
-    margin-right: 10px;
-    position: relative
+    height: 60px;
+    margin: 5px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
 }
 
-.s_product_img .carousel .carousel-indicators li:after {
-    display: none
+.custom-indicators .carousel-indicators li.active {
+    border-color: #007bff;
 }
 
-.s_product_img .carousel .carousel-indicators li:before {
-    content: "";
-    background: rgba(0, 0, 0, 0.7);
-    position: absolute;
-    left: 0px;
-    top: 0px;
+.custom-indicators .carousel-indicators img {
     width: 100%;
     height: 100%;
-    opacity: 0
-}
-
-.s_product_img .carousel .carousel-indicators li.active:before {
-    opacity: 1
+    object-fit: cover;
 }
 
 .s_product_text {
     margin-left: -15px;
-    margin-top: 65px
 }
 
 .s_product_text h3 {
-    font-size: 24px;
+    font-size: 25px;
     font-weight: 500;
-    color: #2a2a2a;
-    margin-bottom: 10px
+    color: #000000;
 }
 
 .s_product_text h2 {
     font-size: 24px;
     font-weight: bold;
     color: #282c91;
-    margin-bottom: 15px
 }
 
 .s_product_text .list li {
-    margin-bottom: 5px
+    margin-bottom: 0px
 }
 
 .s_product_text .list li a {
@@ -3991,7 +3976,7 @@ h6 {
 }
 
 .s_product_text .list li a.active {
-    color: #282c91
+    color: #000000
 }
 
 .s_product_text .list li a.active span {
@@ -4003,10 +3988,13 @@ h6 {
 }
 
 .s_product_text p {
-    padding-top: 20px;
-    border-top: 1px dotted #d5d5d5;
-    margin-top: 20px;
-    margin-bottom: 70px
+    padding-top: 0px;
+    font-size: 16px;
+}
+
+.s_product_text p2 {
+    padding-top: 10px;
+    font-size: 16px;
 }
 
 .s_product_text .card_area .main_btn {
