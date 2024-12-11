@@ -2246,7 +2246,7 @@ b,
 sup,
 sub,
 u {
-    color: #f8b600
+    color: #ffbb00
 }
 
 h1 {
@@ -3917,10 +3917,13 @@ h6 {
     justify-content: center;
     padding: 0;
     margin: 0;
+    list-style: none;
 }
 
 .custom-indicators .carousel-indicators li {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 60px;
     height: 60px;
     margin: 5px;
@@ -3928,6 +3931,7 @@ h6 {
     border-radius: 5px;
     overflow: hidden;
     cursor: pointer;
+    transition: border-color 0.3s ease;
 }
 
 .custom-indicators .carousel-indicators li.active {
@@ -5800,4 +5804,12 @@ a {
 .our-products-cards.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.add-to-cart-section {
+  margin: 20px 0;
+}
+
+.messages-section {
+  margin-top: 10px;
 }

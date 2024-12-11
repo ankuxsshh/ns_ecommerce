@@ -43,25 +43,26 @@
             <!-- Custom Carousel Indicators Below -->
             <div class="custom-indicators mt-3">
               <ol class="carousel-indicators justify-content-center">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
-                  <img src="/media/{{ product.img1 }}" alt="Thumbnail for First Slide" class="indicator-img" alt="" width="100%" height="100%" />
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active">
+                  <img src="/media/{{ product.img1 }}" alt="Thumbnail for First Slide" class="indicator-img" />
                 </li>
                 {% if product.img2 %}
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1">
-                    <img src="/media/{{ product.img2 }}" alt="Thumbnail for Second Slide" class="indicator-img" alt="" width="100%" height="100%" />
+                  <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="active">
+                    <img src="/media/{{ product.img2 }}" alt="Thumbnail for Second Slide" class="indicator-img" />
                   </li>
                 {% endif %}
                 {% if product.img3 %}
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2">
-                    <img src="/media/{{ product.img3 }}" alt="Thumbnail for Third Slide" class="indicator-img" alt="" width="100%" height="100%" />
+                  <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="active">
+                    <img src="/media/{{ product.img3 }}" alt="Thumbnail for Third Slide" class="indicator-img" />
+                  </li>
                 {% endif %}
                 {% if product.img4 %}
-                  <li data-target="#carouselExampleIndicators" data-slide-to="3">
-                    <img src="/media/{{ product.img4 }}" alt="Thumbnail for Fourth Slide" class="indicator-img" alt="" width="100%" height="100%" />
+                  <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" class="active">
+                    <img src="/media/{{ product.img4 }}" alt="Thumbnail for Fourth Slide" class="indicator-img" />
                   </li>
                 {% endif %}
               </ol>
-            </div>            
+            </div>
           </div>
         </div>
         <div class="col-lg-5 offset-lg-1">
@@ -107,7 +108,7 @@
                 </li>
               </ul>
             </div>
-            <br>
+            <br />
             {% comment %} <p style="text-align:justify;">{{ product.shortD }}</p> {% endcomment %}
             <form action="" method="post" id="addtocart">
               {% csrf_token %}
@@ -123,16 +124,18 @@
             </div>
             <br />
             <div>
-              {% if request.user.is_authenticated %}
-                <button class="main_btn" value="addtocart" type="submit" form="addtocart" style="background:transparent;color:#282c91;border-radius: 20px; width: 40%; height: 100%;" name="addCart">Add to Cart</button>
-              {% endif %}
-              {% if messages %}
-                {% for msg in messages %}
-                  <p class="addcartnotif">
-                    {{ msg }} <a href="{% url 'cart' %}">View cart</a>
-                  </p>
-                {% endfor %}
-              {% endif %}
+              <form action="" method="post" id="addtocart">
+                {% csrf_token %}
+                {% if in_cart %}
+                  <div class="card_area">
+                    <a href="{% url 'cart' %}" class="main_btn" style="border-radius: 20px; width: 40%; height: 45px;">View in Cart</a>
+                  </div>
+                {% else %}
+                  <div class="card_area">
+                    <button class="main_btn" value="addtocart" type="submit" form="addtocart" style="border-radius: 20px; width: 40%; height: 45px;" name="addCart">Add to Cart</button>
+                  </div>
+                {% endif %}
+              </form>
             </div>
           </div>
         </div>
