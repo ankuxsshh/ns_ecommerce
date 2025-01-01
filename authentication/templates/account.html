@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<section class="titleCard">
+    <!-- <div class="profilePic">
+        <img src="{% static 'img/dummypic.jpeg' %}" alt="" width="50%">
+    </div> -->
+    <div class="profileHead">
+        <h3>Welcome,</h3>
+        <h2>JITHIN GEORGE</h2>
+    </div>
+</section>
+
+<section class="accountInfo">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button style="background-color: #282c91 !important;color:#fff;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              Profile Information
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body" style="padding:5% !important;">
+                <div class="accordianName">
+                    <input type="text" placeholder="Jithin" name="fname" disabled id="fname">
+                    <input type="text" placeholder="George" name="lname" disabled id="lname">
+                </div>
+                <div class="contactInfo">
+                    <!-- <h3>E-mail :</h3> -->
+                    <input type="email" name="email" placeholder="jithin@gmail.com" disabled id="email">
+                    <input type="text" name="phone" placeholder="+91 8590056709" disabled id="phone">
+
+                </div>
+                <button class="btn btn-primary" onclick="edit()" id="edit">Edit Information</button>
+                <div id="save">
+                  <a class="btn btn-secondary" href="{% url 'account' %}">Cancel</a>
+                  <button class="btn btn-primary" type="submit">Save</button>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button style="background-color: #282c91 !important;color:#fff;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              Orders
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+          </div>
+        </div>
+      </div>
+</section>
+{% endblock %}

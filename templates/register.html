@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+  <section class="register">
+    <div class="registerForm" align="center" data-aos="zoom-in" data-aos-duration="500" data-aos-easing="ease-in" data-aos-delay="200">
+      {% if messages %}
+        <div class="alert alert-{{ result }} alert-dismissible fade show" role="alert">
+          {% for msg in messages %}
+            <p style="text-align: center !important;">{{ msg }}</p>
+          {% endfor %}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endif %}
+      <h1><b style="color:transparent !important;background:url('{% static 'img/bgg1.jpg' %}');background-size:150%;background-clip:text;">CREATE ACCOUNT</b></h1>
+      <form method="post" action="">
+        {% csrf_token %}
+        <div class="name">
+          <input class="form-control" type="text" placeholder="First Name" required name="fname" />
+          <input class="form-control" type="text" placeholder="Last Name" required name="lname" />
+        </div>
+
+        <input class="form-control" type="email" placeholder="Email" required name="email" />
+        <input class="form-control" type="text" placeholder="Contact Number" required name="phone" />
+        <input class="form-control" type="password" placeholder="Password" required name="pass1" />
+        <input class="form-control" type="password" placeholder="Confirm Password" required name="pass2" />
+
+        <button class="main_btn" type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="sideBanner" data-aos="slide-up" data-aos-duration="500" data-aos-easing="ease-in">
+      <img src="{% static 'img/bgg1.jpg' %}" alt="" width="100%" />
+      <img class="logoRegister" src="{% static 'img/ns_logo.png' %}" alt="" width="60%" />
+    </div>
+  </section>
+{% endblock %}
