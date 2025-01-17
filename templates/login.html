@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+  <section class="register">
+    <div class="registerForm" align="center" data-aos="zoom-in" data-aos-duration="500" data-aos-easing="ease-in" data-aos-delay="200">
+      {% if messages %}
+        <div class="alert alert-{{ result }} alert-dismissible fade show" role="alert">
+          {% for msg in messages %}
+            <p style="text-align: center !important;">{{ msg }}</p>
+          {% endfor %}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endif %}
+      <h1><b style="color:transparent !important;background:url('{% static 'img/bgg1.jpg' %}');background-size:150%;background-clip:text;">ACCOUNT LOGIN</b></h1>
+      <form method="post" action="">
+        {% csrf_token %}
+
+        <input class="form-control" type="email" placeholder="Email" required name="email" />
+        <input class="form-control" type="password" placeholder="Password" required name="password" />
+
+        <button class="main_btn" type="submit">LOGIN</button>
+      </form>
+      <p style="text-align:center !important;">
+        <a href="#">Forgot Password</a>
+      </p>
+      <p style="text-align:center !important;">
+        Not registered? <a href="{% url 'register' %}">Create Account</a>
+      </p>
+    </div>
+    <div class="sideBanner" data-aos="slide-up" data-aos-duration="500" data-aos-easing="ease-in">
+      <img src="{% static 'img/bgg1.jpg' %}" alt="" width="100%" style="height:100vh;" />
+      <img class="logoRegister" src="{% static 'img/ns_logo.png' %}" alt="" width="60%" />
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+  <!-- ================Home Banner Area ================= -->
+  <section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+      <div class="container">
+        <div class="banner_content d-md-flex justify-content-between align-items-center">
+          <!-- Optional header text could go here -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================End Home Banner Area ================= -->
+
+  <section class="cart_area">
+    <div class="container">
+      <div class="cart_inner">
+        <form action="{% url 'update_cart' %}" method="post" id="updateForm">
+          {% csrf_token %}
+          {% for item in items %}
+            <div class="table-responsive">
+              <h3>{{ item.item_title }}</h3>
+              <table class="table carttablehead">
+                <thead>
+                  <tr>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <h5>&#8377; {{ item.rate }}</h5>
+                    </td>
+                    <td>
+                      <div class="product_count">
+                        <input type="number" name="{{ item.id }}" id="sst{{ item.id }}" maxlength="12" min="1" value="{{ item.qty }}" title="Quantity:" class="input-text qty" />
+                        <button onclick="var result = document.getElementById('sst{{ item.id }}'); var sst = parseInt(result.value); if(!isNaN(sst)) result.value = sst + 1; return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                        <button onclick="var result = document.getElementById('sst{{ item.id }}'); var sst = parseInt(result.value); if(!isNaN(sst) && sst > 1) result.value = sst - 1; return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                      </div>
+                    </td>
+                    <td>
+                      <h5>&#8377; {{ item.sub_total }}</h5>
+                    </td>
+                    <td>
+                      <a class="main_btn" href="{% url 'cartDelete' item.id %}">Remove</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          {% endfor %}
+        </form>
+      </div>
+    </div>
+    <p style="text-align: center !important; opacity: 0.5;">* Make sure that your cart is updated before checkout!</p>
+    <div class="checkout_btn_inner" style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: end; padding: 0 7%;">
+      <h3 style="flex-basis: 100%; text-align: right; padding: 3% 0 0 0">Cart Total &#8377;{{ cart_total }}</h3>
+      <button class="gray_btn" type="submit" form="updateForm" value="update" name="btn" style="white-space: nowrap;">Update Cart</button>
+      <a class="main_btn" href="{% url 'checkout' %}" style="white-space: nowrap;">Proceed to checkout</a>
+    </div>
+  </section>
+
+  <!-- ================End Cart Area ================= -->
+{% endblock %}

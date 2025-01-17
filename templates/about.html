@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+  <!-- ================Home Banner Area ================= -->
+  <section class="banner_area">
+    <div class="banner_inner d-flex align-items-center" style="background-image:url({% static 'img/cash4.jpg' %});background-size:cover;background-position:fixed;height:500px">
+      <div class="container">
+        <div class="banner_content d-md-flex justify-content-center align-items-center">
+          <!--          <div class="mb-3 mb-md-0" style="border-radius:10px 0 10px 0;padding:3%; text-shadow: -2px 4px 2px #000000;color:#fff;background:rgba(255,255,255,0.5)">
+              <h1 style="font-size:clamp(3em,10vw,5em);">About Us</h1>
+
+            </div>          -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================End Home Banner Area ================= -->
+
+  <!-- ================Blog Area ================= -->
+  <section class="blog_area single-post-area section_gap">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 posts-list">
+          <div class="single-post">
+            <div class="feature-img" align="center" style="margin-bottom:5%" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in">
+              <h2>Welcome to <b>NS Cashew Company</b></h2>
+            </div>
+
+            <div class="blog_details">
+              <div style="display:flex;">
+                <div class="feature-img col-lg-6" data-aos="fade-up-right" data-aos-duration="500" data-aos-easing="ease-in">
+                  <img class="img-fluid" src="{% static 'img/ns_logo.png' %}" alt="" />
+                </div>
+                <div class="col-lg-6" data-aos="slide-left" data-aos-duration="500" data-aos-easing="ease-in">
+                  <h2>The NS CASHEW COMPANY was established in 2004 by Mr.E RASHEED,who is a trader of cashew kernels of different grades. He belongs to the third generation cashew industrialist having over 10 years exposure to the present line.</h2>
+
+                  <p class="excert">As a qualified, highly experienced young business man Mr. Navas Rasheed, Son of Mr. E Rasheed, is a talented youngster from a reputed family. He had the rarest opportunity to get exposed to cashew industry at a very young age. He is very conversant in all aspect of the cashew industry, right from procurement of raw cashew nut, processing and marketing.</p>
+                  <p>Inherited wisdom & knowledge coupled with hard earned experience put him on fast track in understanding cashew processing and its phases to achieve proficiency in cashew processing, trade & process technology.At present company have regular supplies to USA, UK, Netherlands and Middle East. He spends most of his time in the process area ensuring high standard and maintain at every process step of the product.</p>
+                  <p>NS CASHEW COMPANY is a privately owned company with the purpose to export cashew nut kernels from India. We are a family owned company belonging to a group established in 2007, which is involved in trading cashew nut kernels worldwide.Our company certified by BRC, ISO 22000-2018, HACCP,FSSAI.</p>
+                </div>
+              </div>
+
+              <div class="posts-list" style="padding-top: 4%;">
+                <div class="single-post col-lg-12" style="padding:0 !important;">
+                  <div class="feature-img">
+                    <h2 data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in">Services</h2>
+                  </div>
+
+                  <div class="blog_details">
+                    <div style="display:flex;">
+                      <div class="feature-img col-lg-6" data-aos="slide-right" data-aos-duration="500" data-aos-easing="ease-in">
+                        <p class="excert">At N S cashew, we constantly monitor strictly to try deliver the cashews free from infestation , low percentage of broken & extremely lesser scraping percentage to ensure the requirements of our customers including the roasters.</p>
+                        <ol>
+                          <li>Exporter of Cashew Kernels</li>
+                          <li>We offer longer shelf life & purity</li>
+                          <li>Quality</li>
+                          <li>Hygienic and securely packed range</li>
+                          <li>Timely delivery</li>
+                          <li>Meet customer requirements</li>
+                        </ol>
+                        <br /><div class="feature-img">
+                          <h2>Benefits of cashews :</h2>
+                        </div>
+                        <ol>
+                          <li>Cancer Prevention</li>
+                          <li>Heart Health</li>
+                          <li>Hair and Skin Health</li>
+                          <li>Bone Health</li>
+                          <li>Good for the Nerves</li>
+                          <li>Prevent Gallstones</li>
+                          <li>Weight Loss</li>
+                        </ol>
+                      </div>
+                      <div class="col-lg-6" style="padding-right:0;" data-aos="fade-up-left" data-aos-duration="500" data-aos-easing="ease-in">
+                        <img class="img-fluid" src="{% static 'img/cashew-about.jpg' %}" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="quote-wrapper" style="display:flex">
+                <div class="quotes col-lg-6">
+                  <h2>Our Vision</h2><br />Our company's main motto is customer commitment We want to provide the most healthy and hygienic nuts to the world. We are targeting to make our brand NS CASHEW COMPANY as a preferred choice of the world wide companies.
+                </div>
+                <div class="image col-lg-6">
+                  <img src="{% static 'img/ns1.jpeg' %}" width="100%" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================Blog Area ================= -->
+{% endblock %}

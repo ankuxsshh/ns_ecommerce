@@ -1,0 +1,263 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" href="img/cashew-12764606-10421682.mp4" type="image/png" />
+    <title>NS Cashew Company</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendors/lightbox/simpleLightbox.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendors/nice-select/css/nice-select.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendors/animate-css/animate.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendors/jquery-ui/jquery-ui.css' %}" />
+    <!-- main css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- ================Header Menu Area ================= -->
+    <header class="header_area">
+      <div class="main_menu" style="padding:0;background:linear-gradient(45deg,#F5F5DC,#fff);">
+        <div class="container-fluid" style="padding:0;">
+          <nav class="navbar navbar-expand-lg navbar-light w-100" style="display: grid;grid-template-columns:100%;padding:0;">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navTop">
+              <a class="navbar-brand logo" href="{% url 'home' %}"><img src="{% static 'img/ns_logo2.png' %}" alt="NS" width="100%" /></a>
+
+              <div class="navIconsShow">
+                <input placeholder="Search" />
+                {% if user.is_authenticated %}
+                  <ul class="nav navbar-nav navbar-right right_nav pull-right">
+                    <li class="nav-item">
+                      <a href="/cart" class="icons"><i class="ti-shopping-cart"></i></a>
+                    </li>
+
+                    <li class="nav-item submenu dropdown">
+                      <a href="#" class="icons"><i class="ti-user" aria-hidden="true"></i></a>
+                      <ul class="dropdown-menu">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'account' %}">Account</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="single-product.html">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link btn_signout" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                {% else %}
+                  <a class="main_btn" href="{% url 'login' %}" style="line-height: 30px;padding:0.3 10px;color:#fff; border-radius: 18px; border: 1px solid #282c91 !important;">Login</a>
+                {% endif %}
+              </div>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border:none;">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+
+            <!-- inside toggler -->
+            <div class="navBottom collapse" id="navbarSupportedContent" align="center">
+              <!-- <h3>FIRST LAST</h3> -->
+              <ul class="catList basis50">
+                <li class="nav-item">
+                  <a class="nav-link" href="/shop/All">All</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/shop/Cashew">Cashews</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/shop/Almond">Almonds</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/shop/Cardamom">Cardamom</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/shop/Assorted">Assorted</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/shop/Combos">Combos</a>
+                </li>
+              </ul>
+              <input placeholder="Search" />
+
+              {% if user.is_authenticated %}
+                <ul class="navUser">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">ORDERS</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cart' %}">CART</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+                  </li>
+                </ul>
+              {% else %}
+                <ul class="navLogin">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
+                  </li>
+                </ul>
+              {% endif %}
+            </div>
+          </nav>
+
+          <div class="navBottomShow">
+            <ul class="catList">
+              <li class="nav-item">
+                <a class="nav-link" href="/shop/All">All</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/shop/Cashew">Cashews</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/shop/Almond">Almonds</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/shop/Cardamom">Cardamom</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/shop/Combos">Combos</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ================Header Menu Area ================= -->
+
+    {% block main %}
+
+    {% endblock %}
+
+    <!-- ================ start footer Area ================= -->
+    <footer class="footer-area section_gap" style="padding:0 !important;">
+      <div class="container-fluid" style="background: rgba(0,0,0,0.8);padding:5%;">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 single-footer-widget" data-aos="zoom-in" data-aos-duration="500" data-aos-easing="ease-in">
+            <h4 style="white-space:nowrap;">NS Cashew Company</h4>
+            <ul>
+              <li style="color:#fff;">
+                Savor the Moment, Share the Joy <br />NS Cashews Company <br />- Bringing Nature's Finest to Your Doorstep.
+              </li>
+              <li>
+                <b>Email :</b><a href="#">company@mail.com</a>
+              </li>
+              <li>
+                <b>Phone :</b><a href="#">+91 1112223333</a>
+              </li>
+              <!-- <li><a href="#">Terms of Service</a></li> -->
+            </ul>
+          </div>
+
+          <div class="col-lg-6 col-md-6 single-footer-widget" data-aos="zoom-in" data-aos-duration="500" data-aos-easing="ease-in">
+            <h4>Top Products</h4>
+            <ul>
+              <li>
+                <a href="#">Cashews</a>
+              </li>
+              <li>
+                <a href="#">Almonds</a>
+              </li>
+              <li>
+                <a href="#">Cardamom</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom row align-items-center">
+          <p class="footer-text m-0 col-lg-8 col-md-12 text-justify text-left">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>
+                              document.write(new Date().getFullYear())
+                            </script>All rights reserved | <br />Designed and Developed by <a href="https://www.inspirezesttechnologies.com/" target="_blank"><b style="background: linear-gradient(45deg, #BF40BF, #0096FF, #BF40BF, #0096FF);background-size:250%;background-clip:text;font-size:15pt;color:transparent;">InspireZest Technologies</b></a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+          <div class="col-lg-4 col-md-12 footer-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ================ End footer Area ================= -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="
+  https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
+  "></script>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/stellar.js' %}"></script>
+    <script src="{% static 'vendors/lightbox/simpleLightbox.min.js' %}"></script>
+    <script src="{% static 'vendors/nice-select/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'vendors/isotope/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'vendors/isotope/isotope-min.js' %}"></script>
+    <script src="{% static 'vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'vendors/counter-up/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'vendors/counter-up/jquery.counterup.js' %}"></script>
+    <script src="{% static 'js/mail-script.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'js/products.js' %}"></script>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init()
+    </script>
+
+    <!-- END LOGIN JS -->
+    <script>
+      function edit() {
+        var x = document.getElementById('save')
+      
+        document.getElementById('fname').removeAttribute('disabled')
+        document.getElementById('lname').removeAttribute('disabled')
+        document.getElementById('email').removeAttribute('disabled')
+        document.getElementById('phone').removeAttribute('disabled')
+      
+        document.getElementById('edit').style.display = 'none'
+      
+        x.style.display = 'flex'
+      }
+    </script>
+
+    <script>
+      // Hide loader once page is fully loaded
+      window.addEventListener('load', function () {
+        var loader = document.getElementById('loader')
+        loader.style.display = 'none' // Hide loader
+      })
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  </body>
+</html>
