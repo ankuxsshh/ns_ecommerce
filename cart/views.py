@@ -22,8 +22,6 @@ def cart_view(request):
     }
     return render(request, 'cart.html', context)
 
-
-
 @login_required(login_url="user_login/")
 def add_to_cart(request, id):
     # Fetch the product
@@ -37,19 +35,22 @@ def add_to_cart(request, id):
         return redirect('cart')
 
     if request.method == 'POST':
+        # Get the selected quantity from the form
+        qty = int(request.POST.get('qty', 1))  # Default to 1 if not provided
+
         # Create or update the cart item
         cart_item, created = Cart.objects.get_or_create(
             pid=product_quantity.id,
             add_user=request.user.username,
             defaults={
                 'item_title': f"{product.title} - {product_quantity.quantity}",
-                'qty': 1,
+                'qty': qty,
                 'rate': product_quantity.price,
-                'sub_total': product_quantity.price,
+                'sub_total': product_quantity.price * qty,
             }
         )
         if not created:
-            cart_item.qty += 1
+            cart_item.qty += qty  # Increase quantity if the product is already in the cart
             cart_item.sub_total = cart_item.qty * cart_item.rate
             cart_item.save()
 
@@ -72,28 +73,30 @@ def buy_now(request, product_id):
         messages.error(request, "The selected product is currently unavailable.")
         return redirect('cart')
 
+    # Get the selected quantity from the form
+    qty = int(request.POST.get('qty', 1))  # Default to 1 if not provided
+
     # Add the product to the cart
     cart_item, created = Cart.objects.get_or_create(
         pid=product_quantity.id,
         add_user=request.user.username,
         defaults={
             'item_title': f"{product.title} - {product_quantity.quantity}",
-            'qty': 1,
+            'qty': qty,
             'rate': product_quantity.price,
-            'sub_total': product_quantity.price,
+            'sub_total': product_quantity.price * qty,
         }
     )
 
     # If the product is already in the cart, just increase the quantity
     if not created:
-        cart_item.qty += 1
+        cart_item.qty += qty
         cart_item.sub_total = cart_item.qty * cart_item.rate
         cart_item.save()
 
     # Notify the user and redirect to the cart page
     messages.success(request, f"{product.title} ({product_quantity.quantity}) successfully added to the cart.")
     return redirect('cart')  # Redirect to the cart page after adding the product
-
 
 def update_cart(request):
     if request.method == "POST":

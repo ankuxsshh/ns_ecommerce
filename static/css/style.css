@@ -5255,7 +5255,7 @@ p {
 
 @media (max-width:578px) {
     .logo img {
-        width: 240px;
+        width: 290px;
     }
 }
 
@@ -5562,7 +5562,6 @@ a {
     display: flex;
     flex-direction: column;
     gap: 50px;
-    margin-top: ;
     padding: 20% 10% 0 10%;
     background: linear-gradient(45deg, #F5F5DC, #fff);
 }
@@ -5748,6 +5747,13 @@ a {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+@media screen and (max-width: 578px) {
+    .product-card {
+        height: 300px;
+        width: 200px;
+    }
+}
+
 .product-card img {
     height: 100%;
     /* Fill the card height */
@@ -5836,3 +5842,4 @@ a {
     /* Adjust the size of the loader GIF */
     height: 100px;
 }
+

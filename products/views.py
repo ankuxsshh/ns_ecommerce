@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse
-from products.models import Product  # Corrected import
+from products.models import Product
 from cart.models import Cart
 
 # Create your views here.
@@ -22,14 +22,6 @@ def shop_view(request, cat):
     
     return render(request, 'shop.html', context=context)
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
-from django.urls import reverse
-from products.models import Product
-from cart.models import Cart
-
-# Create your views here.
-
 def detail_view(request, id):
     product = Product.objects.get(id=id)
     
@@ -48,34 +40,37 @@ def detail_view(request, id):
     if product_500 and product_500.availability == 'In Stock':
         in_stock = True
 
-    # Fetch related products by category
-    related = Product.objects.filter(type=product.type)[:4]
-
     # Handling cart addition
     if request.method == 'POST':
-        if request.POST.get('addCart') == 'addtocart':
-            qty = request.POST['qty']
-            addProduct = Cart(
+        qty = request.POST.get('qty', 1)  # Get quantity from form (default to 1)
+        qty = int(qty)  # Convert to integer
+
+        if request.POST.get('add_to_cart'):  # Check if the form is for "Add to Cart"
+            product_quantity = product_500 if product_500 else product_250
+            if not product_quantity or product_quantity.availability != 'In Stock':
+                messages.error(request, "The selected product is out of stock.")
+                return redirect('product_detail', id=id)
+
+            # Create or update the cart item
+            cart_item, created = Cart.objects.get_or_create(
+                pid=product.id,
                 add_user=request.user,
-                pid=id,
-                item_title=product.title,
-                qty=qty,
-                rate=product.price,
-                sub_total=(int(qty) * int(product.price))
+                defaults={'item_title': product.title, 'qty': qty, 'rate': product_quantity.price}
             )
-            if request.user.is_authenticated:
-                addProduct.save()
-                messages.success(request, f"{product.title} added to cart with quantity {qty}.")
-                return redirect('cart')  # Redirect to cart page after adding to the cart
-        elif request.POST.get('buy') == 'buynow':
-            pass
+            if not created:
+                cart_item.qty += qty  # Update quantity if already in cart
+                cart_item.save()
+
+            cart_item.sub_total = cart_item.qty * cart_item.rate
+            cart_item.save()
+            messages.success(request, f"{product.title} added to cart.")
+            return redirect('cart')
 
     return render(request, 'single-product.html', {
         'product': product,
-        'related': related,
         'product_250': product_250,
         'product_500': product_500,
         'images_250': images_250,
         'images_500': images_500,
-        'in_stock': in_stock,  # Passing in_stock to the template
+        'in_stock': in_stock,
     })

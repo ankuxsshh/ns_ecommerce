@@ -21,7 +21,6 @@
                 <div class="s_product_img">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner" id="product-images">
-                            <!-- Display images for the 500g pack -->
                             {% if images_500 %}
                             {% for image in images_500 %}
                             <div class="carousel-item {% if forloop.first %} active {% endif %}">
@@ -30,7 +29,6 @@
                             </div>
                             {% endfor %}
                             {% elif images_250 %}
-                            <!-- If no 500g images, fall back to 250g images -->
                             {% for image in images_250 %}
                             <div class="carousel-item {% if forloop.first %} active {% endif %}">
                                 <img class="d-block w-100" src="/media/{{ image.image }}" alt="Product Image"
@@ -113,13 +111,13 @@
                         {% csrf_token %}
                         <div class="product_count">
                             <label for="qty">Quantity:</label>
-                            <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                            <input type="number" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
                                 class="input-text qty" />
                             <button
                                 onclick="var result = document.getElementById('sst'); var sst = result.value; if(!isNaN(sst)) result.value++;return false;"
                                 class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
                             <button
-                                onclick="var result = document.getElementById('sst'); var sst = result.value; if(!isNaN(sst) &amp;&amp; sst > 0) result.value--;return false;"
+                                onclick="var result = document.getElementById('sst'); var sst = result.value; if(!isNaN(sst) && sst > 0) result.value--;return false;"
                                 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
                         </div>
                     </form>
@@ -135,6 +133,7 @@
                     <div>
                         <form action="{% url 'add_to_cart' product.id %}" method="post">
                             {% csrf_token %}
+                            <input type="hidden" name="quantity" value="{{ request.POST.qty }}" />
                             {% if in_cart %}
                             <div class="card_area">
                                 <a href="{% url 'cart' %}" class="main_btn" style="border-radius: 20px; width: 40%; height: 45px;">View Cart</a>
